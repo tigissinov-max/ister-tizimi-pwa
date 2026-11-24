@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>Істер тізімі</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      padding: 30px;
+    }
+    .panel {
+      max-width: 550px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+    }
+    button {
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <button onclick="changeLanguage('kk')">
+      Қазақша
+    </button>
+    <button onclick="changeLanguage('ru')">
+      Русский
+    </button>
+
+    <h1 id="title">Істер тізімі</h1>
+
+    <input id="task" placeholder="Жаңа істі енгізіңіз">
+    <button id="addBtn" onclick="addTask()">Қосу</button>
+
+    <ul id="list"></ul>
+  </div>
+
+  <script>
+    let language = "kk";
+
+    const words = {
+      kk: {
+        title: "Істер тізімі",
+        add: "Қосу",
+        placeholder: "Жаңа істі енгізіңіз"
+      },
+      ru: {
+        title: "Список дел",
+        add: "Добавить",
+        placeholder: "Введите новое дело"
+      }
+    };
+
+    function changeLanguage(lang) {
+      language = lang;
+      document.documentElement.lang = lang;
+      document.getElementById("title").textContent =
+        words[lang].title;
+      document.getElementById("addBtn").textContent =
+        words[lang].add;
+      document.getElementById("task").placeholder =
+        words[lang].placeholder;
+    }
+
+    function addTask() {
+      const input = document.getElementById("task");
+      const value = input.value.trim();
+
+      if (value === "") return;
+
+      const li = document.createElement("li");
+      li.textContent = value;
+      document.getElementById("list").appendChild(li);
+
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
