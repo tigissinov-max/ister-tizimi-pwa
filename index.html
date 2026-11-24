@@ -6,7 +6,8 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
   <title>Істер тізімі</title>
-
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#2455a4">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -283,5 +284,18 @@
 
     render();
   </script>
-</body>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then(() => {
+          console.log("PWA қызметі тіркелді");
+        })
+        .catch(error => {
+          console.error("PWA қатесі:", error);
+        });
+    });
+  }
+</script></body>
 </html>
